@@ -30,6 +30,8 @@ Le système utilise deux tables principales:
 
 ```
 digipart_test/
+├── api/
+│   └── product.php          # API REST pour récupérer un produit
 ├── class/
 │   └── product.class.php    # Classe Product avec méthodes CRUD
 ├── includes/
@@ -76,3 +78,43 @@ Le système gère les images de manière efficace:
 - Protection contre les injections SQL via PDO et la fonction htmlspecialchars()
 - Validation des types de fichiers téléchargés
 - Gestion des erreurs avec try/catch et transactions
+
+## API REST
+
+Le système dispose d'une API REST pour récupérer les données des produits au format JSON.
+
+### Endpoints disponibles
+
+#### GET /api/product.php
+
+Récupère les informations d'un produit spécifique.
+
+**Paramètres:**
+
+- `id` (obligatoire) : L'identifiant du produit à récupérer
+
+**Exemple d'utilisation:**
+
+```
+GET http://localhost/digipart_test/api/product.php?id=1
+```
+
+**Réponse (200 OK):**
+
+```json
+{
+  "id": "1",
+  "reference": "REF123",
+  "title": "Mon produit",
+  "description": "Description détaillée du produit",
+  "price": "29.99",
+  "image": "filename.jpg",
+  "image_url": "../uploads/filename.jpg"
+}
+```
+
+**Codes de retour:**
+- 200: Produit trouvé
+- 400: Requête invalide (paramètre manquant)
+- 404: Produit non trouvé
+- 405: Méthode non autorisée (seule la méthode GET est supportée)
