@@ -24,7 +24,11 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
                 "description" => $product->description,
                 "price" => $product->price,
                 "image" => $product->image,
-                "image_url" => "../uploads/" . $product->image
+                "image_url" => "../uploads/" . $product->image,
+                "priceTaxIncl" => $product->priceTaxIncl,
+                "priceTaxExcl" => $product->priceTaxExcl,
+                "idLang" => $product->idLang,
+                "quantity" => $product->quantity
             ];
             
             http_response_code(200);

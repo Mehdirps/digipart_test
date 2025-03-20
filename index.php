@@ -9,6 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product->title = $_POST['title'];
     $product->description = $_POST['description'];
     $product->price = $_POST['price'];
+    $product->priceTaxIncl = $_POST['priceTaxIncl'];
+    $product->priceTaxExcl = $_POST['priceTaxExcl'];
+    $product->idLang = $_POST['idLang'];
+    $product->quantity = $_POST['quantity'];
 
     // Check if an image has been uploaded
     if (!empty($_FILES['image']['name'])) {
@@ -84,6 +88,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="mb-3">
                     <label for="price" class="form-label">Prix</label>
                     <input type="text" class="form-control" id="price" name="price">
+                </div>
+                <div class="mb-3">
+                    <label for="priceTaxIncl" class="form-label">Prix TTC</label>
+                    <input type="text" class="form-control" id="priceTaxIncl" name="priceTaxIncl">
+                </div>
+                <div class="mb-3">
+                    <label for="priceTaxExcl" class="form-label">Prix HT</label>
+                    <input type="text" class="form-control" id="priceTaxExcl" name="priceTaxExcl">
+                </div>
+                <div class="mb-3">
+                    <label for="idLang" class="form-label">Langue</label>
+                    <select class="form-select" id="idLang" name="idLang">
+                        <option selected disabled>-- Choisir une langue --</option>
+                        <option value="FRA">Français</option>
+                        <option value="ANG">Anglais</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantité</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity">
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Image</label>

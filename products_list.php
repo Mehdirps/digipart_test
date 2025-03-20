@@ -28,7 +28,7 @@ if(isset($_GET['id']) && isset($_GET['delete'])) {
 <body>
     <?php include './includes/header.php'; ?>
     <main>
-        <h1>Listes des produits</h1>
+        <h1 class="text-center">Listes des produits</h1>
         <div class="container">
             <table class="table">
                 <thead>

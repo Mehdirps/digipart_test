@@ -16,6 +16,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $product->title = $_POST['title'];
     $product->description = $_POST['description'];
     $product->price = $_POST['price'];
+    $product->priceTaxIncl = $_POST['priceTaxIncl'];
+    $product->priceTaxExcl = $_POST['priceTaxExcl'];
+    $product->idLang = $_POST['idLang'];
+    $product->quantity = $_POST['quantity'];
 
     $image = $_FILES['image'];
     $image_name = $image['name'];
@@ -77,6 +81,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <p>Référence: <?php echo $product->reference; ?></p>
                     <p><?php echo $product->description; ?></p>
                     <p class="fw-bold"><?php echo $product->price; ?> €</p>
+                    <p>Prix TTC: <?php echo $product->priceTaxIncl; ?> €</p>
+                    <p>Prix HT: <?php echo $product->priceTaxExcl; ?> €</p>
+                    <p>Langue ID: <?php echo $product->idLang; ?></p>
+                    <p>Quantité: <?php echo $product->quantity; ?></p>
                 </div>
             </div>
 
@@ -98,6 +106,26 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <div class="mb-3">
                     <label for="price" class="form-label">Prix (€)</label>
                     <input type="number" step="0.01" class="form-control" id="price" name="price" value="<?php echo $product->price; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="priceTaxIncl" class="form-label">Prix TTC (€)</label>
+                    <input type="number" step="0.01" class="form-control" id="priceTaxIncl" name="priceTaxIncl" value="<?php echo $product->priceTaxIncl; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="priceTaxExcl" class="form-label">Prix HT (€)</label>
+                    <input type="number" step="0.01" class="form-control" id="priceTaxExcl" name="priceTaxExcl" value="<?php echo $product->priceTaxExcl; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="idLang" class="form-label">Langue</label>
+                    <select class="form-select" id="idLang" name="idLang">
+                        <option selected disabled>-- Choisir une langue --</option>
+                        <option value="FRA" <?php if($product->idLang == 'FRA') { echo 'selected'; } ?>>Français</option>
+                        <option value="ANG" <?php if($product->idLang == 'ANG') { echo 'selected'; } ?>>Anglais</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantité</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" value="<?php echo $product->quantity; ?>">
                 </div>
                 <div class="mb-3">
                     <div class="mb-3">

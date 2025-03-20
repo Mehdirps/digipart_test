@@ -10,6 +10,10 @@ class Product {
     public $image;
     public $description;
     public $price;
+    public $priceTaxIncl;
+    public $priceTaxExcl;
+    public $idLang;
+    public $quantity;
     
     public function __construct($db){
         $this->conn = $db;
@@ -47,7 +51,11 @@ class Product {
                     SET 
                         product_id=:product_id,
                         description=:description, 
-                        price=:price";
+                        price=:price,
+                        priceTaxIncl=:price_tax_incl,
+                        priceTaxExcl=:price_tax_excl,
+                        idLang=:id_lang,
+                        quantity=:quantity";
             
             $stmt = $this->conn->prepare($query);
             
@@ -57,6 +65,10 @@ class Product {
             $stmt->bindParam(":product_id", $this->id);
             $stmt->bindParam(":description", $this->description);
             $stmt->bindParam(":price", $this->price);
+            $stmt->bindParam(":price_tax_incl", $this->priceTaxIncl);
+            $stmt->bindParam(":price_tax_excl", $this->priceTaxExcl);
+            $stmt->bindParam(":id_lang", $this->idLang);
+            $stmt->bindParam(":quantity", $this->quantity);
             
             $stmt->execute();
             
@@ -87,7 +99,7 @@ class Product {
     public function getById(){
         $query = "SELECT
                 p.id, p.reference, p.title, p.image,
-                pi.description, pi.price
+                pi.description, pi.price, pi.priceTaxIncl, pi.priceTaxExcl, pi.idLang, pi.quantity
             FROM
                 " . $this->table_name . " p
                 LEFT JOIN
@@ -108,6 +120,10 @@ class Product {
             $this->image = $row['image'];
             $this->description = $row['description'];
             $this->price = $row['price'];
+            $this->priceTaxIncl = $row['priceTaxIncl'];
+            $this->priceTaxExcl = $row['priceTaxExcl'];
+            $this->idLang = $row['idLang'];
+            $this->quantity = $row['quantity'];
             return true;
         }
         
@@ -166,7 +182,11 @@ class Product {
                     " . $this->info_table . "
                 SET
                     description = :description,
-                    price = :price
+                    price = :price,
+                    priceTaxIncl = :price_tax_incl,
+                    priceTaxExcl = :price_tax_excl,
+                    idLang = :id_lang,
+                    quantity = :quantity
                 WHERE
                     product_id = :product_id";
             
@@ -177,6 +197,10 @@ class Product {
             
             $stmt->bindParam(':description', $this->description);
             $stmt->bindParam(':price', $this->price);
+            $stmt->bindParam(':price_tax_incl', $this->priceTaxIncl);
+            $stmt->bindParam(':price_tax_excl', $this->priceTaxExcl);
+            $stmt->bindParam(':id_lang', $this->idLang);
+            $stmt->bindParam(':quantity', $this->quantity); 
             $stmt->bindParam(':product_id', $this->id);
             
             $stmt->execute();
