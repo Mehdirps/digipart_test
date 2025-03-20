@@ -37,7 +37,7 @@ digipart_test/
 ├── uploads/                 # Dossier pour stocker les images uploadées
 ├── index.php                # Page d'accueil (ajout de produit)
 ├── products_list.php        # Liste des produits
-├── update_product.php       # Modification d'un produit
+├── show_product.php         # Detail et modification d'un produit
 ├── db.php                   # Configuration de la base de données
 └── README.md                # Ce fichier
 ```
