@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product->idLang = $_POST['idLang'];
     $product->quantity = $_POST['quantity'];
 
-    // Check if an image has been uploaded
     if (!empty($_FILES['image']['name'])) {
         $image = $_FILES['image'];
         $image_name = $image['name'];
@@ -47,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
     } else {
-        // No image uploaded - set default or null
         $product->image = null;
     }
 
